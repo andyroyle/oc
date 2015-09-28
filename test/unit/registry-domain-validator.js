@@ -96,6 +96,28 @@ describe('registry : domain : validator', function(){
       });
     });
 
+    describe('when specified and active-directory', function(){
+
+      describe('when url and baseDN specified', function(){
+
+        var conf = { publishAuth: { type: 'active-directory', url: 'ldap://dc.domain.com', baseDN: 'dc=domain,dc=com' } };
+
+        it('should be valid', function(){
+          expect(validate(conf).isValid).to.be.true;
+        });
+      });
+
+      describe('when url and baseDN not specified', function(){
+
+        var conf = { publishAuth: { type: 'active-directory', a: '' }};
+
+        it('should not be valid', function(){
+          expect(validate(conf).isValid).to.be.false;
+          expect(validate(conf).message).to.equal('Registry configuration is not valid: basic auth requires username and password');
+        });
+      });
+    });
+
     describe('dependencies', function(){
       describe('when not specified', function(){
 

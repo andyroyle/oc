@@ -8,6 +8,8 @@ module.exports.validate = function(publishAuth){
     return publishAuth.username && publishAuth.password;
 };
 
-module.exports.auth = function(username, password){
-    return config.username === username && config.password === password;
+module.exports.middleware = function(express){
+    return express.basicAuth(function(username, password){
+        return config.username === username && config.password === password;
+    });
 };
