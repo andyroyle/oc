@@ -95,7 +95,7 @@ registry.register({
 |`port`|`number`|default `3000`, sets the port where to start the registry|
 |`prefix`|`string`|sets the href prefix, for example: `/v2/`|
 |`publishAuth`|`object`|sets the authentication parameters for publishing a component to the registry. When `undefined`, no authorisation is required.
-|`publishAuth.type`|`string`|The authorisation type. Only `basic` is supported at the moment.|
+|`publishAuth.type`|`string`|The authorisation type. Only `basic` or `active-directory` is supported at the moment.|
 |`publishAuth.username`|`string`|sets the user name|
 |`publishAuth.password`|`string`|sets the user password|
 |`refreshInterval`|`number` (seconds)|When the components' data cache will be refreshed. Given the data is immutable, this should be high and just for robustness.|
@@ -165,7 +165,7 @@ This is how to register it in a registry:
 var registry = new oc.Registry(configuration);
 
 registry.register({
-  name: 'getFeatureSwitch', 
+  name: 'getFeatureSwitch',
   register: require('./oc-plugins/hobknob'),
   options: connectionString
 });
